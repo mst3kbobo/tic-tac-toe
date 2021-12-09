@@ -1,20 +1,41 @@
 package com.joemerrill.tictactoe;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
+    private final String TAG = "PlayerTest";
+    private Player testPlayer;
+
+    @BeforeEach
+    void setUp() {
+        System.out.println("Running Set Up: " + TAG);
+        testPlayer = new Player("Player1", Player.PlayerSymbol.X);
+
+        assertNotNull(testPlayer);
+    }
+
+    @AfterEach
+    void tearDown() {
+        System.out.println("Running Tear Down: " + TAG);
+        testPlayer = null;
+
+        assertNull(testPlayer);
+    }
+
     @Test
-    void playerTest() {
-        Player player1 = new Player("Player1", Player.PlayerSymbol.X);
-        Player player2 = new Player("Player2", Player.PlayerSymbol.O);
+    void getPlayerNameTest() {
+        System.out.println("Running: getPlayerNameTest");
+        assertEquals("Player1", testPlayer.getName());
+    }
 
-        assertEquals(player1.getName(), "Player1");
-        assertEquals(player1.getPlayerSymbol(), Player.PlayerSymbol.X);
-
-        assertEquals(player2.getName(), "Player2");
-        assertEquals(player2.getPlayerSymbol(), Player.PlayerSymbol.O);
+    @Test
+    void getPlayerSymbolTest() {
+        System.out.println("Running: getPlayerSymbolTest");
+        assertEquals(Player.PlayerSymbol.X, testPlayer.getPlayerSymbol());
     }
 }
